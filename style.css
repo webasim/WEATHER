@@ -19,7 +19,7 @@ body {
 .card {
   width: 90%;
   max-width: 470px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.3);
   color: #fff;
   margin: 20px auto;
   border-radius: 20px;
@@ -44,7 +44,7 @@ body {
   font-size: 16px;
   background-color: rgba(255, 255, 255, 0.8);
   color: #555;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .search button {
@@ -83,6 +83,12 @@ body {
   margin-top: -10px;
 }
 
+.weather h3 {
+  font-size: 28px;
+  font-weight: 200;
+  font-style: italic;
+}
+
 .details {
   display: flex;
   justify-content: space-between;
@@ -118,7 +124,7 @@ body {
   display: none;
 }
 
-/* Responsive Styles */
+
 @media (max-width: 768px) {
   .weather h1 {
     font-size: 60px;
@@ -126,6 +132,10 @@ body {
 
   .weather h2 {
     font-size: 35px;
+  }
+
+  .weather h3 {
+    font-size: 25px;
   }
 
   .details {
@@ -174,6 +184,11 @@ body {
   .weather h2 {
     font-size: 30px;
   }
+  
+  .weather h3 {
+    font-size: 20px;
+  }
+  
 
   .details {
     flex-direction: row;
