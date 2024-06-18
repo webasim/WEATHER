@@ -1,45 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Weather</title>
-        <link rel="stylesheet" href="style.css" />
-        <link rel="icon" href="https://cdn.jim-nielsen.com/ios/1024/weather-2021-12-07.png?rf=1024" type="image/x-icon" />
-        <meta name="description" content="Get real-time weather updates for your location with our Weather app. Stay informed about current weather conditions, forecasts, and more.">
-        <meta name="keywords" content="weather, forecast, temperature, climate, weather app, weather updates">
-        <meta name="author" content="Asim Kumar Hansda">
-        <meta property="og:title" content="Weather">
-        <meta property="og:description" content="Get real-time weather updates for your location with our Weather app. Stay informed about current weather conditions, forecasts, and more.">
-        <meta property="og:image" content="https://cdn.jim-nielsen.com/ios/1024/weather-2021-12-07.png?rf=1024">
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Weather">
-        <meta name="twitter:description" content="Get real-time weather updates for your location with our Weather app. Stay informed about current weather conditions, forecasts, and more.">
-        <meta name="twitter:image" content="https://cdn.jim-nielsen.com/ios/1024/weather-2021-12-07.png?rf=1024">
-    </head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Weather</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="icon"
+      href="https://cdn.jim-nielsen.com/ios/1024/weather-2021-12-07.png?rf=1024"
+      type="image/x-icon"
+    />
+
+    <meta
+      name="description"
+      content="Get real-time weather updates for your location with our Weather app. Stay informed about current weather conditions, forecasts, and more."
+    />
+    <meta
+      name="keywords"
+      content="weather, forecast, temperature, climate, weather app, weather updates"
+    />
+    <meta name="author" content="Asim Kumar Hansda" />
+
+    <meta property="og:title" content="Weather" />
+    <meta
+      property="og:description"
+      content="Get real-time weather updates for your location with our Weather app. Stay informed about current weather conditions, forecasts, and more."
+    />
+    <meta
+      property="og:image"
+      content="https://cdn.jim-nielsen.com/ios/1024/weather-2021-12-07.png?rf=1024"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Weather" />
+    <meta
+      name="twitter:description"
+      content="Get real-time weather updates for your location with our Weather app. Stay informed about current weather conditions, forecasts, and more."
+    />
+    <meta
+      name="twitter:image"
+      content="https://cdn.jim-nielsen.com/ios/1024/weather-2021-12-07.png?rf=1024"
+    />
+  </head>
+
   <body>
     <div class="card">
       <div class="search">
         <input type="text" placeholder="Enter City Name" spellcheck="false" />
         <button>
-          <img src="search.png" alt="search" />
+          <img src="images/search.png" alt="search" />
         </button>
       </div>
       <div class="error">Invalid City Name</div>
       <div class="weather">
-        <img src="rain.png" class="weather-icon" alt="weather icon" />
+        <img src="images/rain.png" class="weather-icon" alt="weather icon" />
         <h1 class="temp">°C</h1>
         <h2 class="city">Enter City Name</h2>
+        <h3 class="feels">feels like</h3>
         <div class="details">
           <div class="col">
-            <img src="humidity.png" alt="humidity icon" />
+            <img src="images/humidity.png" alt="humidity icon" />
             <div>
               <p class="humidity">%</p>
               <p>Humidity</p>
             </div>
           </div>
           <div class="col">
-            <img src="wind.png" alt="wind icon" />
+            <img src="images/wind.png" alt="wind icon" />
             <div>
               <p class="wind">km/h</p>
               <p>Wind Speed</p>
@@ -69,6 +97,8 @@
           document.querySelector(".city").innerHTML = data.name;
           document.querySelector(".temp").innerHTML =
             Math.round(data.main.temp) + "°C";
+          document.querySelector(".feels").innerHTML =
+            "feels like " + Math.round(data.main.feels_like) + "°C";
           document.querySelector(".humidity").innerHTML =
             data.main.humidity + "%";
           document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
@@ -76,32 +106,32 @@
 
           switch (weatherMain) {
             case "Clouds":
-              weatherIcon.src = "clouds.png";
+              weatherIcon.src = "images/clouds.png";
               body.style.backgroundImage =
                 "url('https://www.thoughtco.com/thmb/81QGhTao0s1fj7PydEBkBl7gl0U=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/521928855-56a9e2925f9b58b7d0ffac0a.jpg')";
               break;
             case "Clear":
-              weatherIcon.src = "clear.png";
+              weatherIcon.src = "images/clear.png";
               body.style.backgroundImage =
                 "url('https://d1pra95f92lrn3.cloudfront.net/media/thumb/9192_fit512.jpg')";
               break;
             case "Rain":
-              weatherIcon.src = "rain.png";
+              weatherIcon.src = "images/rain.png";
               body.style.backgroundImage =
-                "url('https://img.freepik.com/free-photo/weather-effects-composition_23-2149853295.jpg?t=st=1718715868~exp=1718719468~hmac=b2d3ee9d635f6400e126e8fe036db7f3fd59560ff7a761e9af2526a454421818&w=2000')";
+                "url('https://cdn.pixabay.com/photo/2024/04/15/07/51/raining-8697220_1280.jpg')";
               break;
             case "Drizzle":
-              weatherIcon.src = "drizzle.png";
+              weatherIcon.src = "images/drizzle.png";
               body.style.backgroundImage =
                 "url('https://upload.wikimedia.org/wikipedia/commons/5/5b/Row_of_poplars_in_the_drizzle_-_geograph.org.uk_-_591822.jpg')";
               break;
             case "Mist":
-              weatherIcon.src = "mist.png";
+              weatherIcon.src = "images/mist.png";
               body.style.backgroundImage =
                 "url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/%D0%97%D0%B0_%D1%81%D0%B5%D0%BB%D0%BE%D0%BC_2.jpg/2560px-%D0%97%D0%B0_%D1%81%D0%B5%D0%BB%D0%BE%D0%BC_2.jpg')";
               break;
             case "Snow":
-              weatherIcon.src = "snow.png";
+              weatherIcon.src = "images/snow.png";
               body.style.backgroundImage =
                 "url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/CargoNet_Di_12_Euro_4000_L%C3%B8nsdal_-_Bolna.jpg/2560px-CargoNet_Di_12_Euro_4000_L%C3%B8nsdal_-_Bolna.jpg')";
               break;
@@ -112,6 +142,11 @@
       }
       searchBtn.addEventListener("click", () => {
         checkWeather(searchBox.value);
+      });
+      searchBox.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+          checkWeather(searchBox.value);
+        }
       });
     </script>
   </body>
