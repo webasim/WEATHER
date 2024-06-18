@@ -101,7 +101,7 @@
             "feels like " + Math.round(data.main.feels_like) + "°C";
           document.querySelector(".humidity").innerHTML =
             data.main.humidity + "%";
-          document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+          document.querySelector(".wind").innerHTML = Number((data.wind.speed * (18/5)).toFixed(2)) + " km/h";
           const weatherMain = data.weather[0].main;
 
           switch (weatherMain) {
