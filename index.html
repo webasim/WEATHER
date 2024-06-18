@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="images/clear.png" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="card">
+      <div class="search">
+        <input type="text" placeholder="Enter City Name" spellcheck="false" />
+        <button>
+          <img src="images/search.png" alt="search" />
+        </button>
+      </div>
+      <div class="error">Invalid City Name</div>
+      <div class="weather">
+        <img src="images/rain.png" class="weather-icon" alt="weather icon" />
+        <h1 class="temp">°C</h1>
+        <h2 class="city">Enter City Name</h2>
+        <div class="details">
+          <div class="col">
+            <img src="images/humidity.png" alt="humidity icon" />
+            <div>
+              <p class="humidity">%</p>
+              <p>Humidity</p>
+            </div>
+          </div>
+          <div class="col">
+            <img src="images/wind.png" alt="wind icon" />
+            <div>
+              <p class="wind">km/h</p>
+              <p>Wind Speed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const apiKey = "e4ff5c5d2793e513fd3be9f77b76bd9f";
+      const apiUrl =
+        "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
+      const searchBox = document.querySelector(".search input");
+      const searchBtn = document.querySelector(".search button");
+      const weatherIcon = document.querySelector(".weather-icon");
+      const body = document.querySelector("body");
+      body.style.backgroundImage =
+        "url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Wind_vane_05643.jpg/2560px-Wind_vane_05643.jpg')";
+      async function checkWeather(city) {
+        const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+        if (response.status == 404) {
+          document.querySelector(".error").style.display = "block";
+          document.querySelector(".weather").style.display = "none";
+        } else {
+          var data = await response.json();
+          console.log(data);
+          document.querySelector(".city").innerHTML = data.name;
+          document.querySelector(".temp").innerHTML =
+            Math.round(data.main.temp) + "°C";
+          document.querySelector(".humidity").innerHTML =
+            data.main.humidity + "%";
+          document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+          const weatherMain = data.weather[0].main;
+
+          switch (weatherMain) {
+            case "Clouds":
+              weatherIcon.src = "images/clouds.png";
+              body.style.backgroundImage =
+                "url('https://www.thoughtco.com/thmb/81QGhTao0s1fj7PydEBkBl7gl0U=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/521928855-56a9e2925f9b58b7d0ffac0a.jpg')";
+              break;
+            case "Clear":
+              weatherIcon.src = "images/clear.png";
+              body.style.backgroundImage =
+                "url('https://d1pra95f92lrn3.cloudfront.net/media/thumb/9192_fit512.jpg')";
+              break;
+            case "Rain":
+              weatherIcon.src = "images/rain.png";
+              body.style.backgroundImage =
+                "url('https://img.freepik.com/free-photo/weather-effects-composition_23-2149853295.jpg?t=st=1718715868~exp=1718719468~hmac=b2d3ee9d635f6400e126e8fe036db7f3fd59560ff7a761e9af2526a454421818&w=2000')";
+              break;
+            case "Drizzle":
+              weatherIcon.src = "images/drizzle.png";
+              body.style.backgroundImage =
+                "url('https://upload.wikimedia.org/wikipedia/commons/5/5b/Row_of_poplars_in_the_drizzle_-_geograph.org.uk_-_591822.jpg')";
+              break;
+            case "Mist":
+              weatherIcon.src = "images/mist.png";
+              body.style.backgroundImage =
+                "url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/%D0%97%D0%B0_%D1%81%D0%B5%D0%BB%D0%BE%D0%BC_2.jpg/2560px-%D0%97%D0%B0_%D1%81%D0%B5%D0%BB%D0%BE%D0%BC_2.jpg')";
+              break;
+            case "Snow":
+              weatherIcon.src = "images/snow.png";
+              body.style.backgroundImage =
+                "url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/CargoNet_Di_12_Euro_4000_L%C3%B8nsdal_-_Bolna.jpg/2560px-CargoNet_Di_12_Euro_4000_L%C3%B8nsdal_-_Bolna.jpg')";
+              break;
+          }
+          document.querySelector(".weather").style.display = "block";
+          document.querySelector(".error").style.display = "none";
+        }
+      }
+      searchBtn.addEventListener("click", () => {
+        checkWeather(searchBox.value);
+      });
+    </script>
+  </body>
+</html>
